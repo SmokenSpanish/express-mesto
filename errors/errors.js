@@ -15,7 +15,7 @@ const internalServerError = (res) => {
 
 const getError = (res, err, notFoundMessage) => {
   if (err.name === 'CastError') {
-    notFoundError(res, notFoundMessage);
+    badRequestError(res, notFoundMessage);
   } else if (err.name === 'ValidationError') {
     badRequestError(res, err);
   } else {
