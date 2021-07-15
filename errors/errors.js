@@ -1,5 +1,5 @@
-const notFoundError = (res, message) => {
-  res.status(404).send(message);
+const notFoundError = (res) => {
+  res.status(404).send({ message: 'ресурс не найден' });
 };
 
 const badRequestError = (res, err) => {
@@ -13,9 +13,9 @@ const internalServerError = (res) => {
   res.status(500).send({ message: 'Внутренняя ошибка сервера' });
 };
 
-const getError = (res, err, notFoundMessage) => {
+const getError = (res, err) => {
   if (err.name === 'CastError') {
-    badRequestError(res, notFoundMessage);
+    res.status(404).send({ message: 'ресурс не найден' });
   } else if (err.name === 'ValidationError') {
     badRequestError(res, err);
   } else {
