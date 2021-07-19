@@ -15,7 +15,7 @@ const internalServerError = (res) => {
 
 const getError = (res, err) => {
   if (err.name === 'CastError') {
-    res.status(404).send({ message: 'ресурс не найден' });
+    res.status(400).send({ message: 'ресурс не найден' });
   } else if (err.name === 'ValidationError') {
     badRequestError(res, err);
   } else {
