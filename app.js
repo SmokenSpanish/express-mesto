@@ -16,6 +16,14 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use('/', (req, res, next) => {
+  req.user = {
+    _id: '60ec3488cbfd96361c425053',
+  };
+
+  next();
+});
+
 app.use('/', router);
 
 app.use('/', (req, res, next) => {
@@ -24,12 +32,6 @@ app.use('/', (req, res, next) => {
   next();
 });
 
-app.use('/', (req, res, next) => {
-  req.user = {
-    _id: '60ec3488cbfd96361c425053',
-  };
 
-  next();
-});
 
 app.listen(PORT, () => {});
